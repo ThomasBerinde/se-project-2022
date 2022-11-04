@@ -1,6 +1,6 @@
-package com.example.seproject2022.persistance.repository;
+package com.example.seproject2022.repository;
 
-import com.example.seproject2022.persistance.entity.Category;
+import com.example.seproject2022.model.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

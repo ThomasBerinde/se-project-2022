@@ -1,4 +1,4 @@
-package com.example.seproject2022.controller.model;
+package com.example.seproject2022.model.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,7 @@
 package com.example.seproject2022.service.converter;
 
-import com.example.seproject2022.controller.model.MessageDto;
-import com.example.seproject2022.persistance.entity.Category;
+import com.example.seproject2022.model.dto.MessageDto;
+import com.example.seproject2022.model.entity.Category;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

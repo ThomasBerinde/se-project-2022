@@ -1,11 +1,10 @@
-package com.example.seproject2022.persistance.entity;
+package com.example.seproject2022.model.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-
 @Entity
 @Table(name = "account", catalog = "se_project_2022")
 @NoArgsConstructor

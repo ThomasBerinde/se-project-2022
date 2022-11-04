@@ -1,4 +1,4 @@
-package com.example.seproject2022.persistance.entity;
+package com.example.seproject2022.model.entity;
 
 import lombok.*;
 
