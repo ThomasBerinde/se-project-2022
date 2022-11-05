@@ -1,5 +1,6 @@
 package com.example.seproject2022.model.dto;
 
+import com.example.seproject2022.model.entity.CategoryName;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,6 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class MessageDto {
-    private String message;
+public class CategoryDto {
+
+    private long id;
+    private CategoryName name;
 }
