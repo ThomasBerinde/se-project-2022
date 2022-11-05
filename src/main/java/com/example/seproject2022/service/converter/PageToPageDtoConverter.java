@@ -5,13 +5,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PageConverter<T> {
+public class PageToPageDtoConverter<T> {
 
-    public PageDto<T> pageToPageDTO(Page<T> page) {
+    public PageDto<T> toDto(Page<T> page) {
         PageDto<T> pageDTO = new PageDto<>();
         pageDTO.setContent(page.getContent());
-        pageDTO.setTotalElements(page.getTotalElements());
-
         return pageDTO;
     }
 }
