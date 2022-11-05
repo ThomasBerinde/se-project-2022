@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateAddressResponseDto {
+public class ListAddressDto {
 
     private long id;
     private String street;
@@ -21,7 +21,7 @@ public class UpdateAddressResponseDto {
     private String country;
     private String postCode;
 
-    public UpdateAddressResponseDto(Address address) {
+    public ListAddressDto(Address address) {
         id = address.getId();
         street = address.getStreet();
         number = address.getNumber();

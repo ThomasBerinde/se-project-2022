@@ -11,9 +11,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateAddressResponseDto {
+public class CreateAddressRequestDto {
 
-    private long id;
     private String street;
     private String number;
     private String city;
@@ -21,13 +20,15 @@ public class UpdateAddressResponseDto {
     private String country;
     private String postCode;
 
-    public UpdateAddressResponseDto(Address address) {
-        id = address.getId();
-        street = address.getStreet();
-        number = address.getNumber();
-        city = address.getCity();
-        county = address.getCounty();
-        country = address.getCountry();
-        postCode = address.getPostCode();
+    public Address toEntity() {
+        Address address = new Address();
+        address.setId(0L);
+        address.setStreet(street);
+        address.setNumber(number);
+        address.setCity(city);
+        address.setCounty(county);
+        address.setCountry(country);
+        address.setPostCode(postCode);
+        return address;
     }
 }

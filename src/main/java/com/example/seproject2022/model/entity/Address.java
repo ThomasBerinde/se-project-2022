@@ -1,7 +1,5 @@
 package com.example.seproject2022.model.entity;
 
-import com.example.seproject2022.model.dto.UpdateAddressRequestDto;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,15 +39,4 @@ public class Address {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "address", fetch = FetchType.LAZY)
     private List<Account> accounts = new ArrayList<>();
-
-    public Address(UpdateAddressRequestDto updateAddressRequestDto, long id) {
-        this.id = id;
-        this.street = updateAddressRequestDto.getStreet();
-        this.number = updateAddressRequestDto.getNumber();
-        this.city = updateAddressRequestDto.getCity();
-        this.county = updateAddressRequestDto.getCounty();
-        this.country = updateAddressRequestDto.getCountry();
-        this.postCode = updateAddressRequestDto.getPostCode();
-        this.accounts = null;
-    }
 }

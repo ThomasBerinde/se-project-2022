@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "fe06948b-8db4-4a24-a700-7bc76d4472c9",
+		"name": "se-project-2022",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21867842"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Update Address Successful",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "elor",
+								"value": "{{roleUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"street\": \"Barbu Stefanescu Delavrancea\",\n    \"number\": 23,\n    \"city\": \"Baia Mare\",\n    \"county\": \"Maramures\",\n    \"country\": \"Romania\",\n    \"post_code\": \"430204\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/addresses/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addresses",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Address Unauthorized",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "elor",
+								"value": "{{roleAdmin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"street\": \"Barbu-Stefanescu-Delavrancea\",\n    \"number\": 23,\n    \"city\": \"Baia Mare\",\n    \"county\": \"Maramures\",\n    \"country\": \"Romania\",\n    \"post_code\": \"430203\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/addresses/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addresses",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Address Unauthenticated",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "elor",
+								"value": "{{roleAdmin}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"street\": \"Barbu-Stefanescu-Delavrancea\",\n    \"number\": 23,\n    \"city\": \"Baia Mare\",\n    \"county\": \"Maramures\",\n    \"country\": \"Romania\",\n    \"post_code\": \"430203\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/addresses/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"addresses",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All Accounts Successful",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "elor",
+								"value": "{{roleAdmin}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/accounts",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All Accounts Unauthorized",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "elor",
+								"value": "{{roleUser}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/accounts",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All Accounts Unauthenticated",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "elor",
+								"value": "HJ1kd=",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/accounts",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Account New Address",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test_account@gmail.com\",\n    \"first_name\": \"Account\",\n    \"last_name\": \"Test\",\n    \"phone\": \"0711111111\",\n    \"password\": \"test\",\n    \"address\": {\n        \"street\": \"Test Street\",\n        \"number\": \"1\",\n        \"city\": \"Test City\",\n        \"county\": \"Test County\",\n        \"country\": \"Test Country\",\n        \"post_code\": \"test-000111\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/accounts",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Account Existing Address",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"teo_ianchis@gmail.com\",\n    \"first_name\": \"Teodora\",\n    \"last_name\": \"Ianchis\",\n    \"phone\": \"0742919233\",\n    \"password\": \"ianchis\",\n    \"address\": {\n        \"street\": \"Fabricii de Zahar\",\n        \"number\": \"56\",\n        \"city\": \"Cluj-Napoca\",\n        \"county\": \"Cluj\",\n        \"country\": \"Romania\",\n        \"post_code\": \"400712\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/accounts",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Account Email Already Exists",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"thomas.berinde.99@gmail.com\",\n    \"first_name\": \"Account\",\n    \"last_name\": \"Test\",\n    \"phone\": \"0711111111\",\n    \"password\": \"test\",\n    \"address\": {\n        \"street\": \"Test\",\n        \"number\": \"1\",\n        \"city\": \"Test-City\",\n        \"county\": \"Test-County\",\n        \"country\": \"Test-Country\",\n        \"post_code\": \"test-012093\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/accounts",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "roleUser",
+			"value": "VVNFUg==",
+			"type": "string"
+		},
+		{
+			"key": "roleAdmin",
+			"value": "QURNSU4=",
+			"type": "string"
+		}
+	]
+}

@@ -7,4 +7,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Long> {
+
+    Address findAllByStreetAndNumberAndCityAndCountyAndCountryAndPostCode(String street,
+                                                                          String number,
+                                                                          String city,
+                                                                          String county,
+                                                                          String country,
+                                                                          String postCode);
 }
