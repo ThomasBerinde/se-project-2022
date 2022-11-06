@@ -11,10 +11,10 @@ import org.springframework.data.domain.Sort;
 @AllArgsConstructor
 public class PageSettings {
 
-    private int page = 1;
-    private int elementPerPage = 2;
-    private String direction = "dsc";
-    private String key = "price";
+    private int page;
+    private int elementPerPage;
+    private String direction;
+    private String key;
 
     public Sort buildSort() {
         return switch (direction) {
