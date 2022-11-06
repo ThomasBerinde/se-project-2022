@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -38,13 +40,14 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ProductDtoUpdate> updateProduct(@PathVariable("id") Long id,
-                                                          @RequestBody ProductDtoUpdate productDto) {
-        return new ResponseEntity<>(productService.updateProductById(id, productDto), HttpStatus.OK);
+                                                          @RequestBody ProductDtoUpdate productDto,
+                                                          HttpServletRequest request) {
+        return new ResponseEntity<>(productService.updateProductById(id, productDto, request.getRequestURI()), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable("id") Long id) {
-        productService.deleteProductById(id);
+    public ResponseEntity<Void> deleteProduct(@PathVariable("id") Long id, HttpServletRequest request) {
+        productService.deleteProductById(id, request.getRequestURI());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

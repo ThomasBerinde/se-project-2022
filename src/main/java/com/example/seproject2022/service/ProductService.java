@@ -9,9 +9,9 @@ import org.springframework.data.domain.Pageable;
 
 public interface ProductService {
 
-    void deleteProductById(Long id);
+    void deleteProductById(Long id, String requestURI);
 
-    ProductDtoUpdate updateProductById(Long id, ProductDtoUpdate productDto);
+    ProductDtoUpdate updateProductById(Long id, ProductDtoUpdate productDto, String requestURI);
 
     ProductDtoCreateProductResponse saveProduct(ProductDtoCreateInput productDto);
 

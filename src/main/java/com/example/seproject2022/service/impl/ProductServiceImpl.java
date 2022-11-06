@@ -40,11 +40,9 @@ public class ProductServiceImpl implements ProductService {
     private final PageToPageDtoConverter pageToPageDTOMapper;
 
     @Override
-    public ProductDtoUpdate updateProductById(Long id, ProductDtoUpdate productDto) throws CustomException {
-        Product productToUpdate = this.findProduct(id);
-        if(productRepository.findProductByName(productDto.getName()).isPresent()) {
-            throw new CustomException("Name already exists", HttpStatus.BAD_REQUEST, "/products");
-        }
+    public ProductDtoUpdate updateProductById(Long id, ProductDtoUpdate productDto, String requestURI) throws CustomException {
+        Product productToUpdate = this.findProduct(id, requestURI);
+        this.findProductByName(productDto.getName());
         this.updateOldProduct(productToUpdate, productDto);
         return productDtoUpdateDeleteConverter.toDto(productRepository.save(productToUpdate));
     }
@@ -52,9 +50,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public ProductDtoCreateProductResponse saveProduct(ProductDtoCreateInput productDtoCreateInput) {
-        if (this.findProductByName(productDtoCreateInput.getName())) {
-            throw new CustomException("Name already exists", HttpStatus.BAD_REQUEST, "/products");
-        }
+        this.findProductByName(productDtoCreateInput.getName());
         List<Long> categoryIds = productDtoCreateInput.getCategoryIds();
         List<Category> categories = new ArrayList<>();
         for (Long id : categoryIds) {
@@ -77,8 +73,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProductById(Long id) throws CustomException {
-        this.findProduct(id);
+    public void deleteProductById(Long id, String requestURI) throws CustomException {
+        this.findProduct(id, requestURI);
         productRepository.deleteById(id);
     }
 
@@ -90,12 +86,14 @@ public class ProductServiceImpl implements ProductService {
         productToUpdate.setImgUrl(productDto.getImgUrl());
     }
 
-    private Product findProduct(Long id) {
+    private Product findProduct(Long id, String requestURI) {
         return productRepository.findProductById(id).orElseThrow(
-            () -> new CustomException(DO_NOT_EXIST_MESSAGE, HttpStatus.NOT_FOUND, "products/" + id));
+            () -> new CustomException(DO_NOT_EXIST_MESSAGE, HttpStatus.NOT_FOUND, requestURI));
     }
 
-    private boolean findProductByName(String name) {
-        return productRepository.findByName(name).isPresent();
+    private void findProductByName(String name) {
+        if(productRepository.findProductByName(name).isPresent()) {
+            throw new CustomException("Name already exists", HttpStatus.BAD_REQUEST, "/products/" + name);
+        }
     }
 }
