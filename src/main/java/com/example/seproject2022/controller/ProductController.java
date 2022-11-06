@@ -3,7 +3,7 @@ package com.example.seproject2022.controller;
 import com.example.seproject2022.model.dto.PageDto;
 import com.example.seproject2022.model.dto.ProductDtoCreateInput;
 import com.example.seproject2022.model.dto.ProductDtoCreateProductResponse;
-import com.example.seproject2022.model.dto.ProductDtoForPagination;
+import com.example.seproject2022.model.dto.ProductDtoForPaginationAndGroupByCategory;
 import com.example.seproject2022.model.dto.ProductDtoUpdate;
 import com.example.seproject2022.model.dto.PageSettings;
 import com.example.seproject2022.service.ProductService;
@@ -32,7 +32,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping()
-    public PageDto<ProductDtoForPagination> getProductsWithFilters(@RequestBody PageSettings pageSettings) {
+    public PageDto<ProductDtoForPaginationAndGroupByCategory> getProductsWithFilters(@RequestBody PageSettings pageSettings) {
         Sort productSort = pageSettings.buildSort();
         Pageable productPage = PageRequest.of(pageSettings.getPage(), pageSettings.getElementPerPage(), productSort);
         return productService.getProducts(productPage);

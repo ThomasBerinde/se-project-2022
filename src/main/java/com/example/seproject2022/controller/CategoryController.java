@@ -1,6 +1,7 @@
 package com.example.seproject2022.controller;
 
 import com.example.seproject2022.model.dto.CategoryDto;
+import com.example.seproject2022.model.dto.ProductDtoForPaginationAndGroupByCategory;
 import com.example.seproject2022.service.CategoryService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -20,5 +21,10 @@ public class CategoryController {
     @GetMapping()
     public ResponseEntity<List<CategoryDto>> getAllCategories() {
         return new ResponseEntity<>(categoryService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<List<ProductDtoForPaginationAndGroupByCategory>> listAllProductsByCategory(@PathVariable ("id")Long id) {
+        return new ResponseEntity<>(categoryService.findProductsByCategory(id), HttpStatus.OK);
     }
 }

@@ -4,7 +4,7 @@ import com.example.seproject2022.exception.CustomException;
 import com.example.seproject2022.model.dto.PageDto;
 import com.example.seproject2022.model.dto.ProductDtoCreateInput;
 import com.example.seproject2022.model.dto.ProductDtoCreateProductResponse;
-import com.example.seproject2022.model.dto.ProductDtoForPagination;
+import com.example.seproject2022.model.dto.ProductDtoForPaginationAndGroupByCategory;
 import com.example.seproject2022.model.dto.ProductDtoUpdate;
 import com.example.seproject2022.model.entity.Category;
 import com.example.seproject2022.model.entity.Product;
@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductResponseConverter productResponseConverter;
     private final Converter<Product, ProductDtoCreateInput> productDtoCreateInputConverter;
 
-    private final Converter<Product, ProductDtoForPagination> productDtoForPaginationConverter;
+    private final Converter<Product, ProductDtoForPaginationAndGroupByCategory> productDtoForPaginationConverter;
     private final PageToPageDtoConverter pageToPageDTOMapper;
 
     @Override
@@ -66,9 +66,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public PageDto<ProductDtoForPagination> getProducts(Pageable productPage) {
+    public PageDto<ProductDtoForPaginationAndGroupByCategory> getProducts(Pageable productPage) {
         Page<Product> page = productRepository.findAll(productPage);
-        PageDto<ProductDtoForPagination> newPage = pageToPageDTOMapper.toDto(page.map(resource -> productDtoForPaginationConverter.toDto(resource)));
+        PageDto<ProductDtoForPaginationAndGroupByCategory> newPage = pageToPageDTOMapper.toDto(page.map(resource -> productDtoForPaginationConverter.toDto(resource)));
         return newPage;
     }
 
