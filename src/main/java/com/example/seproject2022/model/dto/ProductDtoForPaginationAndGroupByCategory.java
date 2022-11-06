@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ProductDtoForPagination {
+public class ProductDtoForPaginationAndGroupByCategory {
 
     private long id;
     private String name;
