@@ -12,12 +12,9 @@ import java.util.List;
 @NoArgsConstructor
 public class PageDto<T> {
 
-    public PageDto(Page<T> page){
+    public PageDto(Page<T> page) {
         this.content = page.getContent();
-        this.totalElements = page.getTotalElements();
     }
 
     private List<T> content;
-
-    private long totalElements;
 }
