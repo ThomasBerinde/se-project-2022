@@ -16,4 +16,6 @@ public interface ProductService {
     ProductDtoCreateProductResponse saveProduct(ProductDtoCreateInput productDto);
 
     PageDto<ProductDtoForPaginationAndGroupByCategory> getProducts(Pageable productPage);
+
+    ProductDtoCreateProductResponse getProductById(Long id, String requestURI);
 }
