@@ -15,7 +15,7 @@ public class CustomExceptionHandler {
                 customException.getHttpStatus(),
                 customException.getMessage(),
                 LocalDateTime.now(),
-                customException.getPath()
+                customException.getPath();
         );
         return new ResponseEntity<>(apiException, customException.getHttpStatus());
     }
