@@ -73,6 +73,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public ProductDtoCreateProductResponse getProductById(Long id, String requestURI) {
+        return productResponseConverter.toDto(this.findProduct(id, requestURI));
+    }
+
+    @Override
     public void deleteProductById(Long id, String requestURI) throws CustomException {
         this.findProduct(id, requestURI);
         productRepository.deleteById(id);

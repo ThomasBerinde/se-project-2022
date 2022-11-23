@@ -32,17 +32,25 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping()
-    public PageDto<ProductDtoForPaginationAndGroupByCategory> getProductsWithFilters(@RequestBody PageSettings pageSettings) {
+    public PageDto<ProductDtoForPaginationAndGroupByCategory> getProductsWithFilters(
+        @RequestBody PageSettings pageSettings) {
         Sort productSort = pageSettings.buildSort();
         Pageable productPage = PageRequest.of(pageSettings.getPage(), pageSettings.getElementPerPage(), productSort);
         return productService.getProducts(productPage);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDtoCreateProductResponse> getProductById(@PathVariable("id") Long id,
+                                                                HttpServletRequest request) {
+        return new ResponseEntity<>(productService.getProductById(id, request.getRequestURI()), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ProductDtoUpdate> updateProduct(@PathVariable("id") Long id,
                                                           @RequestBody ProductDtoUpdate productDto,
                                                           HttpServletRequest request) {
-        return new ResponseEntity<>(productService.updateProductById(id, productDto, request.getRequestURI()), HttpStatus.OK);
+        return new ResponseEntity<>(productService.updateProductById(id, productDto, request.getRequestURI()),
+                                    HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
