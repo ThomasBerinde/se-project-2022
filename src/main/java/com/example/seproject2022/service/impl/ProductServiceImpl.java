@@ -40,7 +40,8 @@ public class ProductServiceImpl implements ProductService {
     private final PageToPageDtoConverter pageToPageDTOMapper;
 
     @Override
-    public ProductDtoUpdate updateProductById(Long id, ProductDtoUpdate productDto, String requestURI) throws CustomException {
+    public ProductDtoUpdate updateProductById(Long id, ProductDtoUpdate productDto, String requestURI)
+        throws CustomException {
         Product productToUpdate = this.findProduct(id, requestURI);
         this.findProductByName(productDto.getName());
         this.updateOldProduct(productToUpdate, productDto);
@@ -68,8 +69,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public PageDto<ProductDtoForPaginationAndGroupByCategory> getProducts(Pageable productPage) {
         Page<Product> page = productRepository.findAll(productPage);
-        PageDto<ProductDtoForPaginationAndGroupByCategory> newPage = pageToPageDTOMapper.toDto(page.map(resource -> productDtoForPaginationConverter.toDto(resource)));
-        return newPage;
+        return pageToPageDTOMapper.toDto(page.map(productDtoForPaginationConverter::toDto));
     }
 
     @Override
@@ -92,12 +92,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private Product findProduct(Long id, String requestURI) {
-        return productRepository.findProductById(id).orElseThrow(
-            () -> new CustomException(DO_NOT_EXIST_MESSAGE, HttpStatus.NOT_FOUND, requestURI));
+        return productRepository.findProductById(id)
+            .orElseThrow(() -> new CustomException(DO_NOT_EXIST_MESSAGE, HttpStatus.NOT_FOUND, requestURI));
     }
 
     private void findProductByName(String name) {
-        if(productRepository.findProductByName(name).isPresent()) {
+        if (productRepository.findProductByName(name).isPresent()) {
             throw new CustomException("Name already exists", HttpStatus.BAD_REQUEST, "/products/" + name);
         }
     }

@@ -28,11 +28,11 @@ public class AddressController {
 
     @PutMapping("/{id}")
     public ResponseEntity<UpdateAddressResponseDto> updateAddress(@RequestBody UpdateAddressRequestDto updateAddressRequestDto,
-                                                                  @RequestHeader(value = "elor", required = false) String elor,
+                                                                  @RequestHeader(value = "jwt", required = false) String role,
                                                                   @PathVariable long id,
                                                                   HttpServletRequest request) {
         String uri = request.getRequestURI();
-        validatorService.validateIsUser(elor, uri);
+        validatorService.validateIsUser(role, uri);
         return new ResponseEntity<>(addressService.updateAddress(updateAddressRequestDto, id, uri), HttpStatus.OK);
     }
 }
