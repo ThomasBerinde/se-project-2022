@@ -30,9 +30,9 @@ public class AccountController {
     private final ValidatorService validatorService;
 
     @GetMapping()
-    public ResponseEntity<List<ListAccountDto>> listAllAccounts(@RequestHeader(value = "jwt", required = false) String role,
+    public ResponseEntity<List<ListAccountDto>> listAllAccounts(@RequestHeader(value = "jwt", required = false) String jwt,
                                                                 HttpServletRequest request) {
-        validatorService.validateIsAdmin(role, request.getRequestURI());
+        validatorService.validateIsAdmin(jwt, request.getRequestURI());
         return new ResponseEntity<>(accountService.listAllAccounts(), HttpStatus.OK);
     }
 

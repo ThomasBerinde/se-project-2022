@@ -30,17 +30,17 @@ public class CategoryController {
     private ValidatorService validatorService;
 
     @GetMapping()
-    public ResponseEntity<List<CategoryDto>> getAllCategories(@RequestHeader(value = "jwt", required = false) String role,
+    public ResponseEntity<List<CategoryDto>> getAllCategories(@RequestHeader(value = "jwt", required = false) String jwt,
                                                               HttpServletRequest request) {
-        validatorService.validateIsAdmin(role, request.getRequestURI());
+        validatorService.validateIsAdmin(jwt, request.getRequestURI());
         return new ResponseEntity<>(categoryService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<List<ProductDtoForPaginationAndGroupByCategory>> listAllProductsByCategory(@PathVariable("id") Long id,
-                                                                                                     @RequestHeader(value = "jwt", required = false) String role,
+                                                                                                     @RequestHeader(value = "jwt", required = false) String jwt,
                                                                                                      HttpServletRequest request) {
-        validatorService.validateIsUser(role, request.getRequestURI());
+        validatorService.validateIsUser(jwt, request.getRequestURI());
         return new ResponseEntity<>(categoryService.findProductsByCategory(id), HttpStatus.OK);
     }
 }

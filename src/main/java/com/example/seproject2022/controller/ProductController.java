@@ -37,46 +37,46 @@ public class ProductController {
     private ValidatorService validatorService;
 
     @GetMapping()
-    public PageDto<ProductDtoForPaginationAndGroupByCategory> getProductsWithFilters(@RequestHeader(value = "jwt", required = false) String role,
+    public PageDto<ProductDtoForPaginationAndGroupByCategory> getProductsWithFilters(@RequestHeader(value = "jwt", required = false) String jwt,
                                                                                      @RequestBody PageSettings pageSettings,
                                                                                      HttpServletRequest request) {
-        validatorService.validateIsUser(role, request.getRequestURI());
+        validatorService.validateIsUser(jwt, request.getRequestURI());
         Sort productSort = pageSettings.buildSort();
         Pageable productPage = PageRequest.of(pageSettings.getPage(), pageSettings.getElementPerPage(), productSort);
         return productService.getProducts(productPage);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDtoCreateProductResponse> getProductById(@RequestHeader(value = "jwt", required = false) String role,
+    public ResponseEntity<ProductDtoCreateProductResponse> getProductById(@RequestHeader(value = "jwt", required = false) String jwt,
                                                                           @PathVariable("id") Long id,
                                                                           HttpServletRequest request) {
-        validatorService.validateIsAdmin(role, request.getRequestURI());
+        validatorService.validateIsAdmin(jwt, request.getRequestURI());
         return new ResponseEntity<>(productService.getProductById(id, request.getRequestURI()), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDtoUpdate> updateProduct(@RequestHeader(value = "jwt", required = false) String role,
+    public ResponseEntity<ProductDtoUpdate> updateProduct(@RequestHeader(value = "jwt", required = false) String jwt,
                                                           @PathVariable("id") Long id,
                                                           @RequestBody ProductDtoUpdate productDto,
                                                           HttpServletRequest request) {
-        validatorService.validateIsAdmin(role, request.getRequestURI());
+        validatorService.validateIsAdmin(jwt, request.getRequestURI());
         return new ResponseEntity<>(productService.updateProductById(id, productDto, request.getRequestURI()),
                                     HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@RequestHeader(value = "jwt", required = false) String role,
+    public ResponseEntity<Void> deleteProduct(@RequestHeader(value = "jwt", required = false) String jwt,
                                               @PathVariable("id") Long id, HttpServletRequest request) {
-        validatorService.validateIsAdmin(role, request.getRequestURI());
+        validatorService.validateIsAdmin(jwt, request.getRequestURI());
         productService.deleteProductById(id, request.getRequestURI());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping()
-    public ResponseEntity<ProductDtoCreateProductResponse> createProduct(@RequestHeader(value = "jwt", required = false) String role,
+    public ResponseEntity<ProductDtoCreateProductResponse> createProduct(@RequestHeader(value = "jwt", required = false) String jwt,
                                                                          @RequestBody ProductDtoCreateInput productDto,
                                                                          HttpServletRequest request) {
-        validatorService.validateIsAdmin(role, request.getRequestURI());
+        validatorService.validateIsAdmin(jwt, request.getRequestURI());
         return new ResponseEntity<>(productService.saveProduct(productDto), HttpStatus.OK);
     }
 }

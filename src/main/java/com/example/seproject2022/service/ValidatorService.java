@@ -4,12 +4,12 @@ import com.example.seproject2022.exception.CustomException;
 
 public interface ValidatorService {
 
-    void validateIsAuthenticated(String role,
+    void validateIsAuthenticated(String jwt,
                                  String uri) throws CustomException;
 
-    void validateIsAdmin(String role,
+    void validateIsAdmin(String jwt,
                          String uri) throws CustomException;
 
-    void validateIsUser(String role,
+    void validateIsUser(String jwt,
                         String uri) throws CustomException;
 }

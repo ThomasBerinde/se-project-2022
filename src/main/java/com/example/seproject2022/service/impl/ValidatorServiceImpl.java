@@ -30,27 +30,27 @@ public class ValidatorServiceImpl implements ValidatorService {
     }
 
     @Override
-    public void validateIsAuthenticated(String role, String uri) throws CustomException {
-        if (role == null) {
+    public void validateIsAuthenticated(String jwt, String uri) throws CustomException {
+        if (jwt == null) {
             throw new CustomException(UNAUTHENTICATED, HttpStatus.UNAUTHORIZED, uri);
         }
-        if (!role.equals(ROLE_USER) && !role.equals(ROLE_ADMIN)) {
+        if (!jwt.equals(ROLE_USER) && !jwt.equals(ROLE_ADMIN)) {
             throw new CustomException(UNAUTHENTICATED, HttpStatus.UNAUTHORIZED, uri);
         }
     }
 
     @Override
-    public void validateIsAdmin(String role, String uri) throws CustomException {
-        validateIsAuthenticated(role, uri);
-        if (!role.equals(ROLE_ADMIN)) {
+    public void validateIsAdmin(String jwt, String uri) throws CustomException {
+        validateIsAuthenticated(jwt, uri);
+        if (!jwt.equals(ROLE_ADMIN)) {
             throw new CustomException(String.format(UNAUTHORIZED, ROLE_ADMIN), HttpStatus.FORBIDDEN, uri);
         }
     }
 
     @Override
-    public void validateIsUser(String role, String uri) throws CustomException {
-        validateIsAuthenticated(role, uri);
-        if (!role.equals(ROLE_USER)) {
+    public void validateIsUser(String jwt, String uri) throws CustomException {
+        validateIsAuthenticated(jwt, uri);
+        if (!jwt.equals(ROLE_USER)) {
             throw new CustomException(String.format(UNAUTHORIZED, ROLE_USER), HttpStatus.FORBIDDEN, uri);
         }
     }
