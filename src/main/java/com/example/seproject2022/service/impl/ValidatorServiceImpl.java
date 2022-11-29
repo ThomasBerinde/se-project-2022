@@ -2,13 +2,10 @@ package com.example.seproject2022.service.impl;
 
 import com.example.seproject2022.exception.CustomException;
 import com.example.seproject2022.service.ValidatorService;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-import java.util.Base64;
 
 @Service
 @RequiredArgsConstructor
