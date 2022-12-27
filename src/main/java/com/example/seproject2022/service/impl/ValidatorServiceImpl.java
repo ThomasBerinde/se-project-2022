@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ValidatorServiceImpl implements ValidatorService {
 
-    private static final String UNAUTHORIZED = "Unauthorized, you must have the role '%s' to access this resource";
+    private static final String UNAUTHORIZED = "Unauthorized, you don't have the required role to access this resource";
     private static final String UNAUTHENTICATED = "User is not authenticated";
     private static String ROLE_ADMIN;
     private static String ROLE_USER;
