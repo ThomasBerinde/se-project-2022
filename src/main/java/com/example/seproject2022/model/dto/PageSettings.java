@@ -12,7 +12,7 @@ import org.springframework.data.domain.Sort;
 public class PageSettings {
 
     private int page;
-    private int elementPerPage;
+    private int elementPerPage; //NU IA bine din body asta, trebuie sa mai vad care e faza.
     private String direction;
     private String key;
 
