@@ -28,9 +28,7 @@ public class CategoryController {
     private ValidatorService validatorService;
 
     @GetMapping()
-    public ResponseEntity<List<CategoryDto>> getAllCategories(@RequestHeader(value = "jwt", required = false) String jwt,
-                                                              HttpServletRequest request) {
-        validatorService.validateIsAdmin(jwt, request.getRequestURI());
+    public ResponseEntity<List<CategoryDto>> getAllCategories() {
         return new ResponseEntity<>(categoryService.findAll(), HttpStatus.OK);
     }
 
