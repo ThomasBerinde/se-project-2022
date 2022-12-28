@@ -54,4 +54,9 @@ public class AccountServiceImpl implements AccountService {
         Account newAccount = accountRepository.save(accountDto.toEntity(address));
         return new CreateAccountResponseDto(newAccount);
     }
+
+    @Override
+    public Account findByEmail(String email) {
+        return accountRepository.findByEmail(email);
+    }
 }
