@@ -53,7 +53,7 @@ public class OrderServiceImpl implements OrderService {
         try {
             File ordersFolder = new File("src/main/resources/orders");
             if (!ordersFolder.exists()) {
-                if (!Boolean.TRUE.equals(ordersFolder.mkdir())) {
+                if (!ordersFolder.mkdir()) {
                     throw new RuntimeException("Error creating orders folder");
                 }
             }
