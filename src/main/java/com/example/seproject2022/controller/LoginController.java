@@ -6,6 +6,7 @@ import com.example.seproject2022.service.LoginService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ public class LoginController {
     private final LoginService loginService;
 
     @PostMapping()
-    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto loginRequestDto,
+    public ResponseEntity<LoginResponseDto> login(@RequestBody @Validated LoginRequestDto loginRequestDto,
                                                   HttpServletRequest request) {
         return new ResponseEntity<>(loginService.login(loginRequestDto, request.getRequestURI()), HttpStatus.OK);
     }

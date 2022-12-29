@@ -8,6 +8,7 @@ import com.example.seproject2022.service.ValidatorService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,7 +38,7 @@ public class AccountController {
     }
 
     @PostMapping()
-    public ResponseEntity<CreateAccountResponseDto> createAccount(@RequestBody CreateAccountRequestDto accountDto,
+    public ResponseEntity<CreateAccountResponseDto> createAccount(@RequestBody @Validated CreateAccountRequestDto accountDto,
                                                                   HttpServletRequest request) {
         return new ResponseEntity<>(accountService.createAccount(accountDto, request.getRequestURI()), HttpStatus.OK);
     }
