@@ -1,2 +1,0 @@
-2022-12-30T00:50:06.912415200 : CrudRepository.deleteAll()
-2022-12-30T01:16:25.276363900 : CrudRepository.deleteAll()
