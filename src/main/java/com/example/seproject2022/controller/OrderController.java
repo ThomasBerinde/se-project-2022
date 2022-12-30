@@ -6,6 +6,7 @@ import com.example.seproject2022.service.ValidatorService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -26,7 +27,7 @@ public class OrderController {
 
     @PostMapping()
     public ResponseEntity<String> create(@RequestHeader(value = "jwt", required = false) String jwt,
-                                         @RequestBody CreateOrderRequestDto createOrderRequestDto,
+                                         @RequestBody @Validated CreateOrderRequestDto createOrderRequestDto,
                                          HttpServletRequest request) {
         validatorService.validateIsUser(jwt, request.getRequestURI());
         return new ResponseEntity<>(orderService.createOrder(createOrderRequestDto, request.getRequestURI()), HttpStatus.OK);

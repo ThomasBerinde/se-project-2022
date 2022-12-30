@@ -7,6 +7,7 @@ import com.example.seproject2022.service.ValidatorService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +28,7 @@ public class AddressController {
     private final AddressService addressService;
 
     @PutMapping("/{id}")
-    public ResponseEntity<UpdateAddressResponseDto> updateAddress(@RequestBody UpdateAddressRequestDto updateAddressRequestDto,
+    public ResponseEntity<UpdateAddressResponseDto> updateAddress(@RequestBody @Validated UpdateAddressRequestDto updateAddressRequestDto,
                                                                   @RequestHeader(value = "jwt", required = false) String jwt,
                                                                   @PathVariable long id,
                                                                   HttpServletRequest request) {
