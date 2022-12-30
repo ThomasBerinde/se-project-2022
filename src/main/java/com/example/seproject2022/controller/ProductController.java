@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +39,7 @@ public class ProductController {
 
     @GetMapping()
     public PageDto<ProductDtoForPaginationAndGroupByCategory> getProductsWithFilters(@RequestHeader(value = "jwt", required = false) String jwt,
-                                                                                     @RequestBody PageSettings pageSettings,
+                                                                                     @RequestBody @Validated PageSettings pageSettings,
                                                                                      HttpServletRequest request) {
         validatorService.validateIsUser(jwt, request.getRequestURI());
         Sort productSort = pageSettings.buildSort();
@@ -57,7 +58,7 @@ public class ProductController {
     @PutMapping("/{id}")
     public ResponseEntity<ProductDtoUpdate> updateProduct(@RequestHeader(value = "jwt", required = false) String jwt,
                                                           @PathVariable("id") Long id,
-                                                          @RequestBody ProductDtoUpdate productDto,
+                                                          @RequestBody @Validated ProductDtoUpdate productDto,
                                                           HttpServletRequest request) {
         validatorService.validateIsAdmin(jwt, request.getRequestURI());
         return new ResponseEntity<>(productService.updateProductById(id, productDto, request.getRequestURI()),
@@ -74,7 +75,7 @@ public class ProductController {
 
     @PostMapping()
     public ResponseEntity<ProductDtoCreateProductResponse> createProduct(@RequestHeader(value = "jwt", required = false) String jwt,
-                                                                         @RequestBody ProductDtoCreateInput productDto,
+                                                                         @RequestBody @Validated ProductDtoCreateInput productDto,
                                                                          HttpServletRequest request) {
         validatorService.validateIsAdmin(jwt, request.getRequestURI());
         return new ResponseEntity<>(productService.saveProduct(productDto), HttpStatus.OK);

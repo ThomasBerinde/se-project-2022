@@ -7,17 +7,35 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateAddressRequestDto {
 
+    private static final String REGEX_POST_CODE = "^[0-9]{1,}$";
+    private static final String INVALID_POST_CODE = "The postal code must contain just digits";
+
+    @NotNull(message = "Street cannot be null or empty")
     private String street;
+
+    @NotNull(message = "Number cannot be null or empty")
     private String number;
+
+    @NotNull(message = "City cannot be null or empty")
     private String city;
+
+    @NotNull(message = "County cannot be null or empty")
     private String county;
+
+    @NotNull(message = "Country cannot be null or empty")
     private String country;
+
+    @Pattern(regexp = REGEX_POST_CODE, message = INVALID_POST_CODE)
     private String postCode;
 
     public Address toEntity(long id) {
