@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### AOP performance measuring ###
+!**/src/main/resources/aop
+
+### Order PDF files ###
+!**/src/main/resources/orders
