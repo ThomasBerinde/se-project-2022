@@ -22,11 +22,7 @@ public class AddressServiceImpl implements AddressService {
     public UpdateAddressResponseDto updateAddress(UpdateAddressRequestDto addressDto,
                                                   long addressId,
                                                   String uri) {
-        Address address = addressRepository.findById(addressId)
-                                           .orElse(null);
-        if (address == null) {
-            throw new CustomException(String.format("Address with id=`%d` not found", addressId), HttpStatus.NOT_FOUND, uri);
-        }
+        Address address = addressRepository.findById(addressId).orElseThrow(() -> new CustomException(String.format("Address with id=`%d` not found", addressId), HttpStatus.NOT_FOUND, uri));
         Address newAddress = addressDto.toEntity(address.getId());
         return new UpdateAddressResponseDto(addressRepository.save(newAddress));
     }
