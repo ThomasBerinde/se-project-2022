@@ -1,6 +1,7 @@
 package com.example.seproject2022.controller;
 
 import com.example.seproject2022.model.dto.CreateOrderRequestDto;
+import com.example.seproject2022.model.dto.CreateOrderResponseDto;
 import com.example.seproject2022.service.OrderService;
 import com.example.seproject2022.service.ValidatorService;
 
@@ -22,14 +23,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderController {
 
-    private final OrderService orderService;
-    private final ValidatorService validatorService;
+        private final OrderService orderService;
+        private final ValidatorService validatorService;
 
-    @PostMapping()
-    public ResponseEntity<String> create(@RequestHeader(value = "jwt", required = false) String jwt,
-                                         @RequestBody @Validated CreateOrderRequestDto createOrderRequestDto,
-                                         HttpServletRequest request) {
-        validatorService.validateIsUser(jwt, request.getRequestURI());
-        return new ResponseEntity<>(orderService.createOrder(createOrderRequestDto, request.getRequestURI()), HttpStatus.OK);
-    }
+        @PostMapping()
+        public ResponseEntity<CreateOrderResponseDto> create(@RequestHeader(value = "jwt", required = false) String jwt,
+                                                             @RequestBody @Validated CreateOrderRequestDto createOrderRequestDto,
+                                                             HttpServletRequest request) {
+                validatorService.validateIsUser(jwt, request.getRequestURI());
+                return new ResponseEntity<>(orderService.createOrder(createOrderRequestDto, request.getRequestURI()),
+                                            HttpStatus.OK);
+        }
 }
