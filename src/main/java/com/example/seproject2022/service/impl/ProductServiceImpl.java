@@ -43,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
     public ProductDtoUpdate updateProductById(Long id, ProductDtoUpdate productDto, String requestURI)
         throws CustomException {
         Product productToUpdate = this.findProduct(id, requestURI);
-        this.findProductByName(productDto.getName());
+        this.findProductByNameUpdate(productDto.getName(), productToUpdate.getName());
         this.updateOldProduct(productToUpdate, productDto);
         return productDtoUpdateDeleteConverter.toDto(productRepository.save(productToUpdate));
     }
@@ -98,6 +98,12 @@ public class ProductServiceImpl implements ProductService {
 
     private void findProductByName(String name) {
         if (productRepository.findProductByName(name).isPresent()) {
+            throw new CustomException("Name already exists", HttpStatus.BAD_REQUEST, "/products/" + name);
+        }
+    }
+
+    private void findProductByNameUpdate(String name, String oldName) {
+        if (productRepository.findProductByName(name).isPresent() && !name.equals(oldName)) {
             throw new CustomException("Name already exists", HttpStatus.BAD_REQUEST, "/products/" + name);
         }
     }
