@@ -41,10 +41,11 @@ public class CategoryControllerTest {
         HttpServletRequest request = mock(HttpServletRequest.class);
         List<Category> expectedCategoryList = CategoryListBuilder.create().build();
         List<CategoryDto> expectedCategoryDtoList = CategoryListDtoBuilder.categoriesDto(expectedCategoryList).build();
+        HttpServletRequest request = mock(HttpServletRequest.class);
 
         //when
         when(categoryService.findAll()).thenReturn(expectedCategoryDtoList);
-        ResponseEntity<List<CategoryDto>> result = categoryController.getAllCategories(request);
+        ResponseEntity<List<CategoryDto>> result = categoryController.getAllCategories("VVNFUg==", request);
 
         //then
         assertEquals(expectedCategoryDtoList, result.getBody());
