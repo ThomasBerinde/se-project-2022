@@ -28,7 +28,7 @@ public class CategoryController {
     private ValidatorService validatorService;
 
     @GetMapping()
-    public ResponseEntity<List<CategoryDto>> getAllCategories() {
+    public ResponseEntity<List<CategoryDto>> getAllCategories(HttpServletRequest request) {
         return new ResponseEntity<>(categoryService.findAll(), HttpStatus.OK);
     }
 
