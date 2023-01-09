@@ -999,10 +999,17 @@
 					"name": "Create Account",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"test_account_10@gmail.com\",\n    \"first_name\": \"Account\",\n    \"last_name\": \"Test\",\n    \"phone\": \"0711111111\",\n    \"password\": \"test\",\n    \"address\": {\n        \"street\": \"Test Street\",\n        \"number\": \"10\",\n        \"city\": \"Test City\",\n        \"county\": \"Test County\",\n        \"country\": \"Test Country\",\n        \"post_code\": \"test-000111\"\n    }\n}",
+							"raw": "{\n    \"email\": \"test_account_12@gmail.com\",\n    \"first_name\": \"Account\",\n    \"last_name\": \"Test\",\n    \"phone\": \"0711111111\",\n    \"password\": \"test\",\n    \"address\": {\n        \"street\": \"Test Street\",\n        \"number\": \"10\",\n        \"city\": \"Test City\",\n        \"county\": \"Test County\",\n        \"country\": \"Test Country\",\n        \"post_code\": \"test-000111\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1029,7 +1036,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"test_account_10@gmail.com\",\r\n    \"password\": \"test\"\r\n}",
+							"raw": "{\r\n    \"email\": \"test_account_12@gmail.com\",\r\n    \"password\": \"test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1053,7 +1060,13 @@
 					"name": "List categories",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "jwt",
+								"value": "",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/categories",
 							"host": [
@@ -1074,7 +1087,7 @@
 						"header": [
 							{
 								"key": "jwt",
-								"value": "VVNFUg==",
+								"value": "",
 								"type": "text"
 							}
 						],
@@ -1099,7 +1112,7 @@
 						"header": [
 							{
 								"key": "jwt",
-								"value": "VVNFUg==",
+								"value": "",
 								"type": "text"
 							}
 						],
@@ -1185,7 +1198,13 @@
 					"name": "List categories",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "jwt",
+								"value": "",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/categories",
 							"host": [
@@ -1206,7 +1225,7 @@
 						"header": [
 							{
 								"key": "jwt",
-								"value": "VVNFUg==",
+								"value": "",
 								"type": "text"
 							}
 						],
@@ -1231,19 +1250,19 @@
 						"header": [
 							{
 								"key": "jwt",
-								"value": "QURNSU4=",
+								"value": "",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/products/8",
+							"raw": "localhost:8080/products/9",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"products",
-								"8"
+								"9"
 							]
 						}
 					},
@@ -1256,7 +1275,7 @@
 						"header": [
 							{
 								"key": "jwt",
-								"value": "QURNSU4=",
+								"value": "",
 								"type": "text"
 							}
 						],
@@ -1289,7 +1308,7 @@
 						"header": [
 							{
 								"key": "jwt",
-								"value": "QURNSU4=",
+								"value": "",
 								"type": "text"
 							}
 						],
@@ -1303,14 +1322,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/products/8",
+							"raw": "localhost:8080/products/9",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"products",
-								"8"
+								"9"
 							]
 						}
 					},
@@ -1323,19 +1342,19 @@
 						"header": [
 							{
 								"key": "jwt",
-								"value": "QURNSU4=",
+								"value": "",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/products/8",
+							"raw": "localhost:8080/products/9",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"products",
-								"8"
+								"9"
 							]
 						}
 					},

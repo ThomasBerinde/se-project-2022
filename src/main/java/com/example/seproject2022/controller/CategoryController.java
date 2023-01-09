@@ -30,8 +30,7 @@ public class CategoryController {
     @GetMapping()
     public ResponseEntity<List<CategoryDto>> getAllCategories(@RequestHeader(value = "jwt", required = false) String jwt,
                                                               HttpServletRequest request) {
-        validatorService.validateIsUser(jwt, request.getRequestURI());
-        validatorService.validateIsAdmin(jwt, request.getRequestURI());
+        validatorService.validateIsAuthenticated(jwt, request.getRequestURI());
         return new ResponseEntity<>(categoryService.findAll(), HttpStatus.OK);
     }
 
@@ -39,8 +38,7 @@ public class CategoryController {
     public ResponseEntity<List<ProductDtoForPaginationAndGroupByCategory>> listAllProductsByCategory(@PathVariable("id") Long id,
                                                                                                      @RequestHeader(value = "jwt", required = false) String jwt,
                                                                                                      HttpServletRequest request) {
-        validatorService.validateIsUser(jwt, request.getRequestURI());
-        validatorService.validateIsAdmin(jwt, request.getRequestURI());
+        validatorService.validateIsAuthenticated(jwt, request.getRequestURI());
         return new ResponseEntity<>(categoryService.findProductsByCategory(id), HttpStatus.OK);
     }
 }
