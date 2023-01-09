@@ -41,7 +41,6 @@ public class CategoryControllerTest {
         HttpServletRequest request = mock(HttpServletRequest.class);
         List<Category> expectedCategoryList = CategoryListBuilder.create().build();
         List<CategoryDto> expectedCategoryDtoList = CategoryListDtoBuilder.categoriesDto(expectedCategoryList).build();
-        HttpServletRequest request = mock(HttpServletRequest.class);
 
         //when
         when(categoryService.findAll()).thenReturn(expectedCategoryDtoList);
